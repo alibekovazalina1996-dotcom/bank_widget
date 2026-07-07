@@ -1,4 +1,3 @@
- 
 """
 Модуль для маскировки данных банковских карт и счетов.
 """
@@ -21,9 +20,9 @@ def mask_account_card(account_info: str) -> str:
 
 def get_date(date_str: str) -> str:
     try:
-        if 'T' in date_str:
-            date_str = date_str.split('T')[0]
-        parts = date_str.split('-')
+        if "T" in date_str:
+            date_str = date_str.split("T")[0]
+        parts = date_str.split("-")
         if len(parts) == 3:
             return f"{parts[2]}.{parts[1]}.{parts[0]}"
         else:

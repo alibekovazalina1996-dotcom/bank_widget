@@ -25,20 +25,24 @@ def valid_account_numbers():
 
 
 def test_get_mask_card_number_valid(valid_card_numbers):
+    """Тест маскирования корректных номеров карт."""
     for card_number, expected in valid_card_numbers:
         assert get_mask_card_number(card_number) == expected
 
 
 def test_get_mask_card_number_invalid():
+    """Тест на нестандартную длину номера карты."""
     with pytest.raises(ValueError):
         get_mask_card_number("123456")  # слишком короткий
 
 
 def test_get_mask_account_valid(valid_account_numbers):
+    """Тест маскирования корректных номеров счетов."""
     for account_number, expected in valid_account_numbers:
         assert get_mask_account(account_number) == expected
 
 
 def test_get_mask_account_short():
+    """Тест на номер счета короче 4 символов."""
     with pytest.raises(ValueError):
         get_mask_account("123")
