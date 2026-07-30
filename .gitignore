@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.coverage
+logs/
+.idea/
+__pycache__/
+*.pyc
+create_xlsx.py
+test_logging.py
