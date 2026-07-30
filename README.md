@@ -121,4 +121,4 @@ pytest tests/
   
 ## Лицензия  
   
-MIT  
+MIT
