@@ -1,4 +1,4 @@
-  import os
+import os
 from typing import Dict, Any
 import requests
 from dotenv import load_dotenv
@@ -8,6 +8,14 @@ load_dotenv()
 API_KEY = os.getenv("EXCHANGE_RATES_API_KEY")
 
 def convert_to_rub(transaction: Dict[str, Any]) -> float:
+    """Конвертирует сумму транзакции из USD или EUR в рубли.
+
+    Аргументы:
+        transaction (Dict[str, Any]): Словарь с данными транзакции.
+
+    Возвращает:
+        float: Сумма в рублях. В случае ошибки возвращает исходную сумму.
+    """
     amount = float(transaction.get("amount", 0))
     currency = transaction.get("currency", {}).get("code", "RUB")
 
