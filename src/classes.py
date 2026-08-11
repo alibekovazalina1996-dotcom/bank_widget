@@ -1,16 +1,52 @@
-class Product:
+from abc import ABC, abstractmethod
+
+# Задание 1: Абстрактный базовый класс
+class BaseProduct(ABC):
+    """Абстрактный базовый класс для всех продуктов."""
+
+    @abstractmethod
+    def __str__(self) -> str:
+        pass
+
+    @abstractmethod
+    def __add__(self, other: 'BaseProduct') -> float:
+        pass
+
+    @property
+    @abstractmethod
+    def price(self) -> float:
+        pass
+
+    @price.setter
+    @abstractmethod
+    def price(self, value: float) -> None:
+        pass
+
+
+# Задание 2: Класс-миксин для логирования создания объектов
+class LogMixin:
+    """Миксин для логирования создания объектов."""
+    def __init__(self, *args, **kwargs):
+        # Формируем строку с параметрами для вывода
+        params = ", ".join([repr(arg) for arg in args] + [f"{k}={repr(v)}" for k, v in kwargs.items()])
+        print(f"Создан объект {self.__class__.__name__}({params})")
+        # НЕ вызываем super().__init__, чтобы не доходить до object
+
+
+class Product(BaseProduct, LogMixin):
     """Базовый класс для представления товара."""
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        # Вызываем LogMixin.__init__ вручную
+        LogMixin.__init__(self, name, description, price, quantity)
 
     def __str__(self) -> str:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other: 'Product') -> float:
-        """Возвращает общую стоимость товаров, если они одного класса."""
         if not isinstance(other, Product):
             raise TypeError("Можно складывать только объекты Product или его наследников")
         if type(self) != type(other):
@@ -77,7 +113,6 @@ class Category:
         return f"{self.name}, количество продуктов: {total_quantity} шт."
 
     def add_product(self, product: Product) -> None:
-        """Добавляет продукт в категорию, только если это Product или его наследник."""
         if not isinstance(product, Product):
             raise TypeError("Можно добавлять только объекты Product или его наследников")
         self.__products.append(product)
