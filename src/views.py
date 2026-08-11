@@ -37,7 +37,9 @@ def get_currency_rates(currencies: list) -> list:
         try:
             url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={cur}&amount=1"
             headers = {"apikey": EXCHANGE_RATES_API_KEY}
+            # Добавляем кодировку UTF-8 для корректной обработки
             response = requests.get(url, headers=headers, timeout=5)
+            response.encoding = 'utf-8'
             response.raise_for_status()
             data = response.json()
             rate = data.get("result", 73.21)
@@ -46,7 +48,6 @@ def get_currency_rates(currencies: list) -> list:
             rate = 73.21
         rates.append({"currency": cur, "rate": round(rate, 2)})
     return rates
-
 
 def get_stock_prices(stocks: list) -> list:
     """Получает цены акций через API Alpha Vantage."""
