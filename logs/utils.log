@@ -1,0 +1,46 @@
+2026-07-30 12:07:16 - src.utils - INFO - Попытка загрузки файла: data/operations.json
+2026-07-30 12:07:16 - src.utils - INFO - Успешно загружено 101 транзакций
+2026-07-30 13:21:54 - src.utils - INFO - Попытка загрузки CSV-файла: data/transactions.csv
+2026-07-30 13:21:54 - src.utils - INFO - Успешно загружено 5 транзакций из CSV
+2026-07-30 13:21:54 - src.utils - INFO - Попытка загрузки XLSX-файла: data/transactions_excel.xlsx
+2026-07-30 13:21:55 - src.utils - INFO - Успешно загружено 5 транзакций из XLSX
+2026-07-30 13:58:22 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-8\test_load_transactions_success0\test.json
+2026-07-30 13:58:22 - src.utils - INFO - Успешно загружено 1 транзакций из JSON
+2026-07-30 13:58:22 - src.utils - INFO - Попытка загрузки JSON-файла: non_existent.json
+2026-07-30 13:58:22 - src.utils - ERROR - JSON-файл не найден: non_existent.json
+2026-07-30 13:58:24 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-8\test_load_transactions_empty_f0\empty.json
+2026-07-30 13:58:24 - src.utils - ERROR - Ошибка декодирования JSON в файле C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-8\test_load_transactions_empty_f0\empty.json: Expecting value: line 1 column 1 (char 0)
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-8\test_load_transactions_not_lis0\not_list.json
+2026-07-30 13:58:29 - src.utils - WARNING - Файл C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-8\test_load_transactions_not_lis0\not_list.json содержит не список, а <class 'dict'>
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки CSV-файла: fake_path.csv
+2026-07-30 13:58:29 - src.utils - INFO - Успешно загружено 2 транзакций из CSV
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки CSV-файла: non_existent.csv
+2026-07-30 13:58:29 - src.utils - ERROR - CSV-файл не найден: non_existent.csv
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки CSV-файла: bad_file.csv
+2026-07-30 13:58:29 - src.utils - ERROR - Ошибка при чтении CSV-файла bad_file.csv: Something went wrong
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки XLSX-файла: fake_path.xlsx
+2026-07-30 13:58:29 - src.utils - INFO - Успешно загружено 2 транзакций из XLSX
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки XLSX-файла: non_existent.xlsx
+2026-07-30 13:58:29 - src.utils - ERROR - XLSX-файл не найден: non_existent.xlsx
+2026-07-30 13:58:29 - src.utils - INFO - Попытка загрузки XLSX-файла: bad_file.xlsx
+2026-07-30 13:58:29 - src.utils - ERROR - Ошибка при чтении XLSX-файла bad_file.xlsx: Something went wrong
+2026-07-30 14:01:52 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-9\test_load_transactions_success0\test.json
+2026-07-30 14:01:52 - src.utils - INFO - Успешно загружено 1 транзакций из JSON
+2026-07-30 14:01:52 - src.utils - INFO - Попытка загрузки JSON-файла: non_existent.json
+2026-07-30 14:01:52 - src.utils - ERROR - JSON-файл не найден: non_existent.json
+2026-07-30 14:01:54 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-9\test_load_transactions_empty_f0\empty.json
+2026-07-30 14:01:54 - src.utils - ERROR - Ошибка декодирования JSON в файле C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-9\test_load_transactions_empty_f0\empty.json: Expecting value: line 1 column 1 (char 0)
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки JSON-файла: C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-9\test_load_transactions_not_lis0\not_list.json
+2026-07-30 14:01:56 - src.utils - WARNING - Файл C:\Users\alibe\AppData\Local\Temp\pytest-of-alibe\pytest-9\test_load_transactions_not_lis0\not_list.json содержит не список, а <class 'dict'>
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки CSV-файла: fake_path.csv
+2026-07-30 14:01:56 - src.utils - INFO - Успешно загружено 2 транзакций из CSV
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки CSV-файла: non_existent.csv
+2026-07-30 14:01:56 - src.utils - ERROR - CSV-файл не найден: non_existent.csv
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки CSV-файла: bad_file.csv
+2026-07-30 14:01:56 - src.utils - ERROR - Ошибка при чтении CSV-файла bad_file.csv: Something went wrong
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки XLSX-файла: fake_path.xlsx
+2026-07-30 14:01:56 - src.utils - INFO - Успешно загружено 2 транзакций из XLSX
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки XLSX-файла: non_existent.xlsx
+2026-07-30 14:01:56 - src.utils - ERROR - XLSX-файл не найден: non_existent.xlsx
+2026-07-30 14:01:56 - src.utils - INFO - Попытка загрузки XLSX-файла: bad_file.xlsx
+2026-07-30 14:01:56 - src.utils - ERROR - Ошибка при чтении XLSX-файла bad_file.xlsx: Something went wrong
