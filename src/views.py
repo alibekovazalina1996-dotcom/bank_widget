@@ -119,3 +119,81 @@ def main_page(date_str: str) -> str:
     }
 
     return json.dumps(response, ensure_ascii=False, indent=2)
+
+def events_page(date_str: str, period: str = 'M') -> str:
+    """Страница 'События' — аналитика расходов и поступлений."""
+    logger.info(f"Запрос для страницы 'События' с датой: {date_str}, период: {period}")
+
+    # Читаем файл
+    df = read_excel_file('data/operations.xlsx')
+    if df.empty:
+        return json.dumps({"error": "Нет данных"}, ensure_ascii=False)
+
+    # Преобразуем даты
+    df['Дата операции'] = pd.to_datetime(df['Дата операции'], dayfirst=True, errors='coerce')
+    df['Дата платежа'] = pd.to_datetime(df['Дата платежа'], dayfirst=True, errors='coerce')
+
+    # Определяем диапазон дат
+    end_date = pd.to_datetime(date_str)
+    if period == 'W':
+        start_date = end_date - pd.Timedelta(days=7)
+    elif period == 'M':
+        start_date = end_date.replace(day=1)
+    elif period == 'Y':
+        start_date = end_date.replace(month=1, day=1)
+    else:  # ALL
+        start_date = df['Дата операции'].min()
+
+    mask = (df['Дата операции'] >= start_date) & (df['Дата операции'] <= end_date)
+    filtered_df = df.loc[mask]
+
+    # Расходы (отрицательные суммы)
+    expenses_df = filtered_df[filtered_df['Сумма платежа'] < 0]
+    expenses_total = round(abs(expenses_df['Сумма платежа'].sum()))
+
+    # Группируем расходы по категориям
+    expenses_by_category = expenses_df.groupby('Категория')['Сумма платежа'].sum().abs().sort_values(ascending=False)
+    top_categories = expenses_by_category.head(7)
+    rest_sum = expenses_by_category.iloc[7:].sum() if len(expenses_by_category) > 7 else 0
+
+    # Формируем main расходов
+    main_expenses = []
+    for cat, amount in top_categories.items():
+        main_expenses.append({"category": cat, "amount": round(amount)})
+    if rest_sum > 0:
+        main_expenses.append({"category": "Остальное", "amount": round(rest_sum)})
+
+    # Переводы и наличные
+    transfers_df = expenses_df[expenses_df['Категория'].isin(['Переводы', 'Наличные'])]
+    transfers_cash = transfers_df.groupby('Категория')['Сумма платежа'].sum().abs().sort_values(ascending=False)
+    transfers_and_cash = [{"category": cat, "amount": round(amount)} for cat, amount in transfers_cash.items()]
+
+    # Поступления (положительные суммы)
+    income_df = filtered_df[filtered_df['Сумма платежа'] > 0]
+    income_total = round(income_df['Сумма платежа'].sum())
+
+    income_by_category = income_df.groupby('Категория')['Сумма платежа'].sum().sort_values(ascending=False)
+    main_income = [{"category": cat, "amount": round(amount)} for cat, amount in income_by_category.head(7).items()]
+
+    # Загружаем настройки пользователя
+    try:
+        with open('user_settings.json', 'r', encoding='utf-8') as f:
+            settings = json.load(f)
+    except FileNotFoundError:
+        settings = {"user_currencies": [], "user_stocks": []}
+
+    response = {
+        "expenses": {
+            "total_amount": expenses_total,
+            "main": main_expenses,
+            "transfers_and_cash": transfers_and_cash
+        },
+        "income": {
+            "total_amount": income_total,
+            "main": main_income
+        },
+        "currency_rates": get_currency_rates(settings.get('user_currencies', [])),
+        "stock_prices": get_stock_prices(settings.get('user_stocks', []))
+    }
+
+    return json.dumps(response, ensure_ascii=False, indent=2)
