@@ -27,27 +27,23 @@ def get_greeting() -> str:
 
 
 def get_currency_rates(currencies: list) -> list:
-    """Получает курсы валют через API apilayer.com."""
-    if not EXCHANGE_RATES_API_KEY:
-        logger.warning("API ключ для валют не найден, используются заглушки")
-        return [{"currency": cur, "rate": 73.21} for cur in currencies]
-
+    """
+    Получает курсы валют через бесплатный API ExchangeRate-API.
+    """
     rates = []
     for cur in currencies:
         try:
-            url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={cur}&amount=1"
-            headers = {"apikey": EXCHANGE_RATES_API_KEY}
-            # Добавляем кодировку UTF-8 для корректной обработки
-            response = requests.get(url, headers=headers, timeout=5)
-            response.encoding = 'utf-8'
+            url = f"https://api.exchangerate-api.com/v4/latest/{cur}"
+            response = requests.get(url, timeout=5)
             response.raise_for_status()
             data = response.json()
-            rate = data.get("result", 73.21)
+            rate = data.get("rates", {}).get("RUB", 73.21)
         except Exception as e:
             logger.error(f"Ошибка получения курса {cur}: {e}")
             rate = 73.21
         rates.append({"currency": cur, "rate": round(rate, 2)})
     return rates
+
 
 def get_stock_prices(stocks: list) -> list:
     """Получает цены акций через API Alpha Vantage."""
