@@ -1,12 +1,16 @@
 import os
+import json
+import requests
+import pandas as pd
+from datetime import datetime
 from dotenv import load_dotenv
+from src.utils import read_excel_file, get_date_range, logger
 
 load_dotenv()
 
-from datetime import datetime
-import json
-import pandas as pd
-from src.utils import read_excel_file, get_date_range, format_date, logger
+# Получаем ключи из переменных окружения
+EXCHANGE_RATES_API_KEY = os.getenv("EXCHANGE_RATES_API_KEY")
+ALPHA_VANTAGE_API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY")
 
 
 def get_greeting() -> str:
@@ -20,6 +24,49 @@ def get_greeting() -> str:
         return "Добрый вечер"
     else:
         return "Доброй ночи"
+
+
+def get_currency_rates(currencies: list) -> list:
+    """Получает курсы валют через API apilayer.com."""
+    if not EXCHANGE_RATES_API_KEY:
+        logger.warning("API ключ для валют не найден, используются заглушки")
+        return [{"currency": cur, "rate": 73.21} for cur in currencies]
+
+    rates = []
+    for cur in currencies:
+        try:
+            url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={cur}&amount=1"
+            headers = {"apikey": EXCHANGE_RATES_API_KEY}
+            response = requests.get(url, headers=headers, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            rate = data.get("result", 73.21)
+        except Exception as e:
+            logger.error(f"Ошибка получения курса {cur}: {e}")
+            rate = 73.21
+        rates.append({"currency": cur, "rate": round(rate, 2)})
+    return rates
+
+
+def get_stock_prices(stocks: list) -> list:
+    """Получает цены акций через API Alpha Vantage."""
+    if not ALPHA_VANTAGE_API_KEY:
+        logger.warning("API ключ для акций не найден, используются заглушки")
+        return [{"stock": stock, "price": 150.12} for stock in stocks]
+
+    prices = []
+    for stock in stocks:
+        try:
+            url = f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={stock}&apikey={ALPHA_VANTAGE_API_KEY}"
+            response = requests.get(url, timeout=5)
+            response.raise_for_status()
+            data = response.json()
+            price = float(data.get("Global Quote", {}).get("05. price", 150.12))
+        except Exception as e:
+            logger.error(f"Ошибка получения цены {stock}: {e}")
+            price = 150.12
+        prices.append({"stock": stock, "price": round(price, 2)})
+    return prices
 
 
 def get_card_data(transactions: pd.DataFrame) -> list:
@@ -46,7 +93,6 @@ def get_top_transactions(transactions: pd.DataFrame, n: int = 5) -> list:
     sorted_tx = transactions.sort_values(by='Сумма платежа', ascending=False).head(n)
     result = []
     for _, row in sorted_tx.iterrows():
-        # Преобразуем дату в строку
         date_val = row.get('Дата платежа')
         if pd.isna(date_val):
             date_str = ''
@@ -63,51 +109,21 @@ def get_top_transactions(transactions: pd.DataFrame, n: int = 5) -> list:
     return result
 
 
-def get_currency_rates(currencies: list) -> list:
-    """Получает курсы валют через API."""
-    # Здесь нужно будет подключить реальный API
-    # Пока возвращаем заглушку
-    rates = []
-    for cur in currencies:
-        rates.append({
-            "currency": cur,
-            "rate": 73.21  # Заглушка
-        })
-    return rates
-
-
-def get_stock_prices(stocks: list) -> list:
-    """Получает цены акций через API."""
-    # Здесь нужно будет подключить реальный API
-    # Пока возвращаем заглушку
-    prices = []
-    for stock in stocks:
-        prices.append({
-            "stock": stock,
-            "price": 150.12  # Заглушка
-        })
-    return prices
-
-
 def main_page(date_str: str) -> str:
     """Главная функция для страницы 'Главная'."""
     logger.info(f"Запрос для страницы 'Главная' с датой: {date_str}")
 
-    # Читаем файл
     df = read_excel_file('data/operations.xlsx')
     if df.empty:
         return json.dumps({"error": "Нет данных"}, ensure_ascii=False)
 
-    # Преобразуем даты в datetime
     df['Дата операции'] = pd.to_datetime(df['Дата операции'], dayfirst=True, errors='coerce')
     df['Дата платежа'] = pd.to_datetime(df['Дата платежа'], dayfirst=True, errors='coerce')
 
-    # Определяем диапазон дат
     start_date, end_date = get_date_range(date_str)
     mask = (df['Дата операции'] >= start_date) & (df['Дата операции'] <= end_date)
     filtered_df = df.loc[mask]
 
-    # Загружаем настройки пользователя
     try:
         with open('user_settings.json', 'r', encoding='utf-8') as f:
             settings = json.load(f)
@@ -125,20 +141,18 @@ def main_page(date_str: str) -> str:
 
     return json.dumps(response, ensure_ascii=False, indent=2)
 
+
 def events_page(date_str: str, period: str = 'M') -> str:
     """Страница 'События' — аналитика расходов и поступлений."""
     logger.info(f"Запрос для страницы 'События' с датой: {date_str}, период: {period}")
 
-    # Читаем файл
     df = read_excel_file('data/operations.xlsx')
     if df.empty:
         return json.dumps({"error": "Нет данных"}, ensure_ascii=False)
 
-    # Преобразуем даты
     df['Дата операции'] = pd.to_datetime(df['Дата операции'], dayfirst=True, errors='coerce')
     df['Дата платежа'] = pd.to_datetime(df['Дата платежа'], dayfirst=True, errors='coerce')
 
-    # Определяем диапазон дат
     end_date = pd.to_datetime(date_str)
     if period == 'W':
         start_date = end_date - pd.Timedelta(days=7)
@@ -146,41 +160,35 @@ def events_page(date_str: str, period: str = 'M') -> str:
         start_date = end_date.replace(day=1)
     elif period == 'Y':
         start_date = end_date.replace(month=1, day=1)
-    else:  # ALL
+    else:
         start_date = df['Дата операции'].min()
 
     mask = (df['Дата операции'] >= start_date) & (df['Дата операции'] <= end_date)
     filtered_df = df.loc[mask]
 
-    # Расходы (отрицательные суммы)
     expenses_df = filtered_df[filtered_df['Сумма платежа'] < 0]
     expenses_total = round(abs(expenses_df['Сумма платежа'].sum()))
 
-    # Группируем расходы по категориям
     expenses_by_category = expenses_df.groupby('Категория')['Сумма платежа'].sum().abs().sort_values(ascending=False)
     top_categories = expenses_by_category.head(7)
     rest_sum = expenses_by_category.iloc[7:].sum() if len(expenses_by_category) > 7 else 0
 
-    # Формируем main расходов
     main_expenses = []
     for cat, amount in top_categories.items():
         main_expenses.append({"category": cat, "amount": round(amount)})
     if rest_sum > 0:
         main_expenses.append({"category": "Остальное", "amount": round(rest_sum)})
 
-    # Переводы и наличные
     transfers_df = expenses_df[expenses_df['Категория'].isin(['Переводы', 'Наличные'])]
     transfers_cash = transfers_df.groupby('Категория')['Сумма платежа'].sum().abs().sort_values(ascending=False)
     transfers_and_cash = [{"category": cat, "amount": round(amount)} for cat, amount in transfers_cash.items()]
 
-    # Поступления (положительные суммы)
     income_df = filtered_df[filtered_df['Сумма платежа'] > 0]
     income_total = round(income_df['Сумма платежа'].sum())
 
     income_by_category = income_df.groupby('Категория')['Сумма платежа'].sum().sort_values(ascending=False)
     main_income = [{"category": cat, "amount": round(amount)} for cat, amount in income_by_category.head(7).items()]
 
-    # Загружаем настройки пользователя
     try:
         with open('user_settings.json', 'r', encoding='utf-8') as f:
             settings = json.load(f)
