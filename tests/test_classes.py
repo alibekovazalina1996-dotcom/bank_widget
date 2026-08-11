@@ -56,3 +56,24 @@ def test_add_product_to_category():
     # Проверка, что нельзя добавить не-Product
     with pytest.raises(TypeError, match="Можно добавлять только объекты Product или его наследников"):
         category.add_product("не_товар")
+
+# ==================== НОВЫЕ ТЕСТЫ ДЛЯ 17.1 ====================
+
+def test_product_zero_quantity():
+    """Тест, что при создании продукта с нулевым количеством выбрасывается ошибка."""
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Товар", "Описание", 100.0, 0)
+
+
+def test_average_price_empty_category():
+    """Тест средней цены для пустой категории."""
+    category = Category("Пустая", "Описание", [])
+    assert category.average_price() == 0.0
+
+
+def test_average_price_non_empty_category():
+    """Тест средней цены для категории с товарами."""
+    product1 = Product("Товар 1", "Описание", 100.0, 5)
+    product2 = Product("Товар 2", "Описание", 200.0, 3)
+    category = Category("Категория", "Описание", [product1, product2])
+    assert category.average_price() == 150.0
