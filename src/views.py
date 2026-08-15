@@ -68,23 +68,24 @@ def get_stock_prices(stocks: list) -> list:
 
 def get_card_data(transactions: pd.DataFrame) -> list:
     """Возвращает данные по картам: последние 4 цифры, расходы, кешбэк."""
-    if 'Номер карты' not in transactions.columns:
+    if "Номер карты" not in transactions.columns:
         return []
-    
-    card_groups = transactions.groupby('Номер карты')
+
     result = []
-    for card, group in card_groups:
-        last_digits = str(card)[-4:] if card else '0000'
-        total_spent = group['Сумма платежа'].sum()
-        cashback = total_spent / 100
-        result.append({
-            "last_digits": last_digits,
-            "total_spent": round(total_spent, 2),
-            "cashback": round(cashback, 2)
-        })
+    for card, group in transactions.groupby("Номер карты"):
+        expenses = group.loc[
+            group["Сумма платежа"] < 0,
+            "Сумма платежа",
+        ].abs()
+        total_spent = expenses.sum()
+        result.append(
+            {
+                "last_digits": str(card)[-4:] if card else "0000",
+                "total_spent": round(total_spent, 2),
+                "cashback": round(total_spent * 0.01, 2),
+            }
+        )
     return result
-
-
 def get_top_transactions(transactions: pd.DataFrame, n: int = 5) -> list:
     """Возвращает топ-N транзакций по сумме платежа."""
     sorted_tx = transactions.sort_values(by='Сумма платежа', ascending=False).head(n)
