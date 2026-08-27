@@ -29,8 +29,10 @@ def user_interaction():
     aeroplanes = Aeroplane.cast_to_object_list(raw_data)
     print(f"✅ Найдено {len(aeroplanes)} самолётов.")
 
-    # Сохраняем в JSON
-    for plane in aeroplanes:
+    # Ограничиваем количество сохраняемых самолётов (первые 50)
+    max_planes = min(len(aeroplanes), 50)
+    print(f"✅ Сохраняю первые {max_planes} самолётов из {len(aeroplanes)}...")
+    for plane in aeroplanes[:max_planes]:
         saver.add_aeroplane(plane)
     print("✅ Данные сохранены в файл aeroplanes.json")
 

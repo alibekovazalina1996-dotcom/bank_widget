@@ -14,8 +14,16 @@ class AeroplanesAPI(AbstractAPI):
     def get_country_coordinates(self, country_name: str) -> List[float]:
         """Получает boundingbox страны."""
         try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+            }
             params = {"q": country_name, "format": "json", "limit": 1}
-            response = requests.get(self.base_url_geo, params=params, timeout=10)
+            response = requests.get(
+                self.base_url_geo,
+                params=params,
+                headers=headers,
+                timeout=10
+            )
             response.raise_for_status()
             data = response.json()
             if data:
@@ -36,12 +44,11 @@ class AeroplanesAPI(AbstractAPI):
             logger.warning(f"Не удалось получить координаты для {country_name}")
             return []
 
-        # Параметры для opensky
         params = {
-            "lamin": coordinates[0],  # юг
-            "lamax": coordinates[1],  # север
-            "lomin": coordinates[2],  # запад
-            "lomax": coordinates[3],  # восток
+            "lamin": coordinates[0],
+            "lamax": coordinates[1],
+            "lomin": coordinates[2],
+            "lomax": coordinates[3],
         }
 
         try:
