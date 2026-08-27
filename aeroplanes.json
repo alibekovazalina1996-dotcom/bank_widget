@@ -1,0 +1,452 @@
+[
+  {
+    "icao24": "39de4f",
+    "callsign": "TVF99KE",
+    "country": "France",
+    "speed": 196.57,
+    "altitude": 11582.4,
+    "longitude": 1787832795,
+    "latitude": 8.8799
+  },
+  {
+    "icao24": "50047c",
+    "callsign": "T7AKR20",
+    "country": "San Marino",
+    "speed": 249.67,
+    "altitude": 9144,
+    "longitude": 1787832785,
+    "latitude": 36.1918
+  },
+  {
+    "icao24": "a89ea5",
+    "callsign": "N6545H",
+    "country": "United States",
+    "speed": 54.41,
+    "altitude": 1211.58,
+    "longitude": 1787832716,
+    "latitude": -101.9146
+  },
+  {
+    "icao24": "e8027b",
+    "callsign": "LAN532",
+    "country": "Chile",
+    "speed": 243.21,
+    "altitude": 12489.18,
+    "longitude": 1787832785,
+    "latitude": -77.3177
+  },
+  {
+    "icao24": "80162d",
+    "callsign": "AXB789",
+    "country": "India",
+    "speed": 242.1,
+    "altitude": 10972.8,
+    "longitude": 1787832794,
+    "latitude": 50.1194
+  },
+  {
+    "icao24": "e8027e",
+    "callsign": "LPE2065",
+    "country": "Chile",
+    "speed": 185.21,
+    "altitude": 6553.2,
+    "longitude": 1787832793,
+    "latitude": -76.8825
+  },
+  {
+    "icao24": "39de4b",
+    "callsign": "TVF30TS",
+    "country": "France",
+    "speed": 2.83,
+    "altitude": 0.0,
+    "longitude": 1787832795,
+    "latitude": 2.3537
+  },
+  {
+    "icao24": "39de4a",
+    "callsign": "N/A",
+    "country": "France",
+    "speed": 96.72,
+    "altitude": 1455.42,
+    "longitude": 1787832737,
+    "latitude": 28.7325
+  },
+  {
+    "icao24": "39de4d",
+    "callsign": "TVF48RW",
+    "country": "France",
+    "speed": 0.06,
+    "altitude": 0.0,
+    "longitude": 1787832758,
+    "latitude": 14.4822
+  },
+  {
+    "icao24": "39de57",
+    "callsign": "TVF75WS",
+    "country": "France",
+    "speed": 176.97,
+    "altitude": 11887.2,
+    "longitude": 1787832795,
+    "latitude": -8.0755
+  },
+  {
+    "icao24": "39de58",
+    "callsign": "TVF28HN",
+    "country": "France",
+    "speed": 205.49,
+    "altitude": 10972.8,
+    "longitude": 1787832795,
+    "latitude": 11.6042
+  },
+  {
+    "icao24": "801640",
+    "callsign": "AIC2353",
+    "country": "India",
+    "speed": 68.42,
+    "altitude": 137.16,
+    "longitude": 1787832791,
+    "latitude": 72.888
+  },
+  {
+    "icao24": "ab6fdd",
+    "callsign": "AAL2731",
+    "country": "United States",
+    "speed": 224.21,
+    "altitude": 12192,
+    "longitude": 1787832795,
+    "latitude": -85.5422
+  },
+  {
+    "icao24": "39de51",
+    "callsign": "TVF18NF",
+    "country": "France",
+    "speed": 0,
+    "altitude": 0.0,
+    "longitude": 1787832681,
+    "latitude": 2.3603
+  },
+  {
+    "icao24": "39de50",
+    "callsign": "TVF591U",
+    "country": "France",
+    "speed": 189,
+    "altitude": 11879.58,
+    "longitude": 1787832795,
+    "latitude": -3.3952
+  },
+  {
+    "icao24": "a2cbca",
+    "callsign": "N28BQ",
+    "country": "United States",
+    "speed": 247.29,
+    "altitude": 8229.6,
+    "longitude": 1787832795,
+    "latitude": -93.9701
+  },
+  {
+    "icao24": "39de55",
+    "callsign": "TVF4704",
+    "country": "France",
+    "speed": 187.46,
+    "altitude": 11902.44,
+    "longitude": 1787832795,
+    "latitude": 1.3293
+  },
+  {
+    "icao24": "801649",
+    "callsign": "IGO6345",
+    "country": "India",
+    "speed": 69.62,
+    "altitude": 167.64,
+    "longitude": 1787832529,
+    "latitude": 73.8606
+  },
+  {
+    "icao24": "801648",
+    "callsign": "IGO368H",
+    "country": "India",
+    "speed": 237.35,
+    "altitude": 11582.4,
+    "longitude": 1787832795,
+    "latitude": 81.6046
+  },
+  {
+    "icao24": "801650",
+    "callsign": "AXB1340",
+    "country": "India",
+    "speed": 108.03,
+    "altitude": 1630.68,
+    "longitude": 1787832795,
+    "latitude": 76.789
+  },
+  {
+    "icao24": "801657",
+    "callsign": "AIC1704",
+    "country": "India",
+    "speed": 62.09,
+    "altitude": 129.54,
+    "longitude": 1787832762,
+    "latitude": 88.4487
+  },
+  {
+    "icao24": "8a02ee",
+    "callsign": "LNI352",
+    "country": "Indonesia",
+    "speed": 143.69,
+    "altitude": 3230.88,
+    "longitude": 1787832794,
+    "latitude": 106.6143
+  },
+  {
+    "icao24": "00b22d",
+    "callsign": "SAA555",
+    "country": "South Africa",
+    "speed": 249.47,
+    "altitude": 11262.36,
+    "longitude": 1787832643,
+    "latitude": 29.3284
+  },
+  {
+    "icao24": "80160a",
+    "callsign": "IGO726W",
+    "country": "India",
+    "speed": 167.77,
+    "altitude": 3383.28,
+    "longitude": 1787832790,
+    "latitude": 72.9178
+  },
+  {
+    "icao24": "ab1667",
+    "callsign": "VXP1095",
+    "country": "United States",
+    "speed": 241.52,
+    "altitude": 10789.92,
+    "longitude": 1787832795,
+    "latitude": -80.0119
+  },
+  {
+    "icao24": "a1befc",
+    "callsign": "UAL1806",
+    "country": "United States",
+    "speed": 283.07,
+    "altitude": 11887.2,
+    "longitude": 1787832795,
+    "latitude": -120.374
+  },
+  {
+    "icao24": "851914",
+    "callsign": "JAL4910",
+    "country": "Japan",
+    "speed": 229.86,
+    "altitude": 10050.78,
+    "longitude": 1787832673,
+    "latitude": 128.7125
+  },
+  {
+    "icao24": "aaf665",
+    "callsign": "WAL260",
+    "country": "United States",
+    "speed": 205.92,
+    "altitude": 4221.48,
+    "longitude": 1787832492,
+    "latitude": -80.4712
+  },
+  {
+    "icao24": "50048a",
+    "callsign": "T7ZEUS",
+    "country": "San Marino",
+    "speed": 217.46,
+    "altitude": 11650.98,
+    "longitude": 1787832795,
+    "latitude": 52.7872
+  },
+  {
+    "icao24": "ad5623",
+    "callsign": "AAL1839",
+    "country": "United States",
+    "speed": 203.76,
+    "altitude": 10363.2,
+    "longitude": 1787832795,
+    "latitude": -83.2791
+  },
+  {
+    "icao24": "ac231d",
+    "callsign": "FDY404",
+    "country": "United States",
+    "speed": 95.06,
+    "altitude": 2430.78,
+    "longitude": 1787832795,
+    "latitude": -95.7642
+  },
+  {
+    "icao24": "80161a",
+    "callsign": "IGO213",
+    "country": "India",
+    "speed": 232.75,
+    "altitude": 10591.8,
+    "longitude": 1787832794,
+    "latitude": 89.6355
+  },
+  {
+    "icao24": "801625",
+    "callsign": "AIC1VF",
+    "country": "India",
+    "speed": 233.17,
+    "altitude": 11544.3,
+    "longitude": 1787832794,
+    "latitude": 77.2238
+  },
+  {
+    "icao24": "a3685d",
+    "callsign": "N/A",
+    "country": "United States",
+    "speed": 191.65,
+    "altitude": 5273.04,
+    "longitude": 1787832792,
+    "latitude": -116.6419
+  },
+  {
+    "icao24": "e48d15",
+    "callsign": "PROHB",
+    "country": "Brazil",
+    "speed": 0,
+    "altitude": 0.0,
+    "longitude": 1787832749,
+    "latitude": -40.2892
+  },
+  {
+    "icao24": "39de46",
+    "callsign": "TVF79CL",
+    "country": "France",
+    "speed": 213.68,
+    "altitude": 11582.4,
+    "longitude": 1787832795,
+    "latitude": 9.8485
+  },
+  {
+    "icao24": "39de45",
+    "callsign": "TVF36UQ",
+    "country": "France",
+    "speed": 194.37,
+    "altitude": 11590.02,
+    "longitude": 1787832793,
+    "latitude": 19.3495
+  },
+  {
+    "icao24": "a77ed4",
+    "callsign": "N582RG",
+    "country": "United States",
+    "speed": 60.19,
+    "altitude": 1348.74,
+    "longitude": 1787832773,
+    "latitude": -87.7
+  },
+  {
+    "icao24": "407a06",
+    "callsign": "EZY78UG",
+    "country": "United Kingdom",
+    "speed": 267.8,
+    "altitude": 11277.6,
+    "longitude": 1787832794,
+    "latitude": 19.1243
+  },
+  {
+    "icao24": "0d1314",
+    "callsign": "VIV1392",
+    "country": "Mexico",
+    "speed": 108.35,
+    "altitude": 2971.8,
+    "longitude": 1787832795,
+    "latitude": -98.9954
+  },
+  {
+    "icao24": "39de40",
+    "callsign": "TVF19QQ",
+    "country": "France",
+    "speed": 283.8,
+    "altitude": 11567.16,
+    "longitude": 1787832795,
+    "latitude": -3.6522
+  },
+  {
+    "icao24": "acdfc2",
+    "callsign": "N929BR",
+    "country": "United States",
+    "speed": 85.82,
+    "altitude": 1211.58,
+    "longitude": 1787832795,
+    "latitude": -97.0083
+  },
+  {
+    "icao24": "a35548",
+    "callsign": "N3137E",
+    "country": "United States",
+    "speed": 61.64,
+    "altitude": 411.48,
+    "longitude": 1787832795,
+    "latitude": -70.9204
+  },
+  {
+    "icao24": "39de41",
+    "callsign": "TVF8964",
+    "country": "France",
+    "speed": 120.42,
+    "altitude": 891.54,
+    "longitude": 1787832724,
+    "latitude": 10.4768
+  },
+  {
+    "icao24": "39de44",
+    "callsign": "TVF36VX",
+    "country": "France",
+    "speed": 6.69,
+    "altitude": 0.0,
+    "longitude": 1787832795,
+    "latitude": 2.3568
+  },
+  {
+    "icao24": "39de43",
+    "callsign": "TVF62GV",
+    "country": "France",
+    "speed": 184.73,
+    "altitude": 10843.26,
+    "longitude": 1787832795,
+    "latitude": 1.8672
+  },
+  {
+    "icao24": "ac498c",
+    "callsign": "FDX5030",
+    "country": "United States",
+    "speed": 207.24,
+    "altitude": 10363.2,
+    "longitude": 1787832795,
+    "latitude": 21.2457
+  },
+  {
+    "icao24": "aad012",
+    "callsign": "UAL507",
+    "country": "United States",
+    "speed": 110.82,
+    "altitude": 1173.48,
+    "longitude": 1787832795,
+    "latitude": 12.1373
+  },
+  {
+    "icao24": "511188",
+    "callsign": "MBU6239",
+    "country": "Estonia",
+    "speed": 205.8,
+    "altitude": 10972.8,
+    "longitude": 1787832794,
+    "latitude": 20.9575
+  },
+  {
+    "icao24": "511189",
+    "callsign": "CFG3MN",
+    "country": "Estonia",
+    "speed": 234.28,
+    "altitude": 11879.58,
+    "longitude": 1787832795,
+    "latitude": 10.8975
+  }
+]
